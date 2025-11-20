@@ -1,0 +1,14 @@
+PathWyse ver. 0.1
+--------------------
+Reading problem data: instances/spprclib/A-n45-k6-54.sppcc
+Reading problem data complete
+--------------------
+Problem: undefined
+Number of resources: 0
+Number of nodes: 0
+Origin: 0
+Destination: 0
+Upperbounds: 
+--------------------
+Solving problem...
+Algorithm mode: main algorithm

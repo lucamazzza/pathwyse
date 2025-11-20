@@ -1,0 +1,134 @@
+[
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/solver.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/solver.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/solver.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/solver.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/data/graph.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/data/graph.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/data/graph.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/data/graph.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/data/path.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/data/path.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/data/path.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/data/path.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/data/problem.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/data/problem.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/data/problem.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/data/problem.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/resources/defaultcost.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/resources/defaultcost.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/resources/defaultcost.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/resources/defaultcost.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/resources/capacity.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/resources/capacity.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/resources/capacity.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/resources/capacity.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/resources/node_limit.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/resources/node_limit.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/resources/node_limit.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/resources/node_limit.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/resources/time.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/resources/time.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/resources/time.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/resources/time.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/resources/time_windows.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/resources/time_windows.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/resources/time_windows.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/resources/time_windows.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/algorithm.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/algorithm.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/algorithm.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/algorithm.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/labels/label.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/labels/label.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/labels/label.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/labels/label.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/labels/label_advanced.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/labels/label_advanced.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/labels/label_advanced.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/labels/label_advanced.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/preprocessing/dijkstra.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/preprocessing/dijkstra.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/preprocessing/dijkstra.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/preprocessing/dijkstra.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/preprocessing/preprocessing.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/preprocessing/preprocessing.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/preprocessing/preprocessing.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/preprocessing/preprocessing.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/dynamic_programming/PW_default/PW_default.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/dynamic_programming/PW_default/PW_default.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/dynamic_programming/PW_default/PW_default.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/dynamic_programming/PW_default/PW_default.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/dynamic_programming/PW_default/LM_default.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/dynamic_programming/PW_default/LM_default.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/dynamic_programming/PW_default/LM_default.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/dynamic_programming/PW_default/LM_default.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/dynamic_programming/PW_acyclic/PW_acyclic.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/dynamic_programming/PW_acyclic/PW_acyclic.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/dynamic_programming/PW_acyclic/PW_acyclic.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/dynamic_programming/PW_acyclic/PW_acyclic.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/algorithms/dynamic_programming/PW_acyclic/LM_acyclic.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/algorithms/dynamic_programming/PW_acyclic/LM_acyclic.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/algorithms/dynamic_programming/PW_acyclic/LM_acyclic.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/algorithms/dynamic_programming/PW_acyclic/LM_acyclic.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/utils/bitset.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/utils/bitset.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/utils/bitset.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/utils/bitset.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/utils/data_collector.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/utils/data_collector.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/utils/data_collector.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/utils/data_collector.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++ -Dpathwyse_core_EXPORTS -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -fPIC -o CMakeFiles/pathwyse_core.dir/core/utils/param.cpp.o -c /Users/lucamazza/projects/pathwyse/src/core/utils/param.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/core/utils/param.cpp",
+  "output": "src/CMakeFiles/pathwyse_core.dir/core/utils/param.cpp.o"
+},
+{
+  "directory": "/Users/lucamazza/projects/pathwyse/build/src",
+  "command": "/usr/bin/c++  -I/Users/lucamazza/projects/pathwyse/src/core -O3 -w -pthread -DNDEBUG -std=gnu++20 -arch arm64 -o CMakeFiles/pathwyse.dir/standalone/main.cpp.o -c /Users/lucamazza/projects/pathwyse/src/standalone/main.cpp",
+  "file": "/Users/lucamazza/projects/pathwyse/src/standalone/main.cpp",
+  "output": "src/CMakeFiles/pathwyse.dir/standalone/main.cpp.o"
+}
+]

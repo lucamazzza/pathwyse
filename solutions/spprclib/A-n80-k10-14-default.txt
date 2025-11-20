@@ -1,0 +1,25 @@
+PathWyse ver. 0.1
+--------------------
+Reading problem data: instances/spprclib/A-n80-k10-14.sppcc
+Reading problem data complete
+--------------------
+Problem: A-n80-k10
+Number of resources: 1
+Number of nodes: 81
+Origin: 0
+Destination: 80
+Upperbounds: 100 
+--------------------
+Solving problem...
+Algorithm mode: main algorithm
+PWDefault global time: 4.437387
+--------------------
+Problem Status: Feasible
+PWDefault status: Optimization complete
+--------------------
+Best solution found:
+Solution Status: Optimal
+Obj: -105283
+Tour Length: 15
+Tour: 0 48 8 68 78 75 57 35 65 69 47 41 46 64 80 
+Consumption: 99 
