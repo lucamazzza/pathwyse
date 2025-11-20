@@ -1,25 +1,25 @@
 PathWyse ver. 0.1
 --------------------
-Reading problem data: instances/spprclib/B-n45-k6-54.sppcc
+Reading problem data: instances/spprclib/B-n78-k10-70.sppcc
 Reading problem data complete
 --------------------
-Problem: B-n45-k6
+Problem: B-n78-k10
 Number of resources: 1
-Number of nodes: 46
+Number of nodes: 79
 Origin: 0
-Destination: 45
+Destination: 78
 Upperbounds: 100 
 --------------------
 Solving problem...
 Algorithm mode: main algorithm
-PWDefault global time: 9.580596
+PWDefault global time: 2.432612
 --------------------
 Problem Status: Feasible
 PWDefault status: Optimization complete
 --------------------
 Best solution found:
 Solution Status: Optimal
-Obj: -74278
+Obj: -44333
 Tour Length: 12
-Tour: 0 13 20 15 33 40 44 35 22 12 39 45 
+Tour: 0 8 22 71 51 45 31 20 3 32 47 78 
 Consumption: 100 

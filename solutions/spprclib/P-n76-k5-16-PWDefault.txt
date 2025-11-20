@@ -1,0 +1,25 @@
+PathWyse ver. 0.1
+--------------------
+Reading problem data: instances/spprclib/P-n76-k5-16.sppcc
+Reading problem data complete
+--------------------
+Problem: P-n76-k5
+Number of resources: 1
+Number of nodes: 77
+Origin: 0
+Destination: 76
+Upperbounds: 280 
+--------------------
+Solving problem...
+Algorithm mode: main algorithm
+PWDefault global time: 3.928451
+--------------------
+Problem Status: Feasible
+PWDefault status: Optimization complete
+--------------------
+Best solution found:
+Solution Status: Optimal
+Obj: -107633
+Tour Length: 20
+Tour: 0 27 57 15 36 47 74 28 62 73 1 56 49 24 18 55 25 39 58 76 
+Consumption: 280 
