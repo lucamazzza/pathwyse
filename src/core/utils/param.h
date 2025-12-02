@@ -65,6 +65,13 @@ struct Parameters {
     static bool isDefaultJoinEarly() {return default_earlyjoin;}
     static unsigned long long int getDefaultJoinStep() {return default_earlyjoin_step;}
 
+    /**ILS Algorithm**/
+    static int getILSMaxIterations(){return ils_max_iterations;}
+    static int getILSMaxNoImprove(){return ils_max_no_improve;}
+    static int getILSPerturbationStrength(){return ils_perturbation_strength;}
+    static float getILSTimelimit(){return ils_timelimit;}
+    static bool isILSAcceptWorse(){return ils_accept_worse;}
+
     /**Data Collection**/
     static bool isOutputStored(){return output_write;}
     static bool isCollecting(){return collection_level >= 0;}
@@ -129,6 +136,13 @@ private:
 
     //Default algorithm relaxations parameters
     static int default_queue_limit;
+
+    /**ILS Algorithm Parameters**/
+    static int ils_max_iterations;
+    static int ils_max_no_improve;
+    static int ils_perturbation_strength;
+    static float ils_timelimit;
+    static bool ils_accept_worse;
 
     /**Data Collection**/
     static bool output_write;                                               //Global parameter

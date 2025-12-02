@@ -231,6 +231,8 @@ void Solver::setupAlgorithms() {
 Algorithm* Solver::createAlgorithm(std::string name){
     if(name == "PWAcyclic")
         return new PWAcyclic(name, problem);
+    else if(name == "PW_ILS")
+        return new PW_ILS(name, problem);
     else
         return new PWDefault(name, problem);
 }

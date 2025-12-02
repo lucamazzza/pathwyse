@@ -61,6 +61,9 @@ set(
         core/algorithms/dynamic_programming/PW_acyclic/LM_acyclic.h
         core/algorithms/dynamic_programming/PW_acyclic/LM_acyclic.cpp
 
+        core/algorithms/dynamic_programming/PW_ILS/PW_ILS.h
+        core/algorithms/dynamic_programming/PW_ILS/PW_ILS.cpp
+
         core/utils/bitset.h
         core/utils/bitset.cpp
         core/utils/constants.h

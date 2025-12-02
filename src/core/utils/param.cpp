@@ -58,6 +58,13 @@ unsigned long long int Parameters::default_earlyjoin_step = 300;
 
 int Parameters::default_queue_limit = 10;
 
+/**ILS Algorithm Parameters**/
+int Parameters::ils_max_iterations = 1000;
+int Parameters::ils_max_no_improve = 100;
+int Parameters::ils_perturbation_strength = 3;
+float Parameters::ils_timelimit = 300.0;
+bool Parameters::ils_accept_worse = false;
+
 /**Data Collection**/
 bool Parameters::output_write = false;
 std::string Parameters::timestamp = "YYYY-MM-DD_hh:mm:ss";
@@ -166,6 +173,16 @@ void Parameters::readParameters(std::string param_path) {
                 default_earlyjoin_step = stoi(value);
             else if(command == "algo/default/relaxations/queue_limit")
                 default_queue_limit = stoi(value);
+            else if(command == "algo/ils/max_iterations")
+                ils_max_iterations = stoi(value);
+            else if(command == "algo/ils/max_no_improve")
+                ils_max_no_improve = stoi(value);
+            else if(command == "algo/ils/perturbation_strength")
+                ils_perturbation_strength = stoi(value);
+            else if(command == "algo/ils/timelimit")
+                ils_timelimit = stof(value);
+            else if(command == "algo/ils/accept_worse")
+                ils_accept_worse = stoi(value);
             else if(command == "data_collection/level")
                 collection_level = stoi(value);
             else if(command == "data_collection/tag") {
