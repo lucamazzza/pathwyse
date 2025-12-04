@@ -5,7 +5,7 @@
 #include "data/path.h"
 #include "algorithms/dynamic_programming/PW_default/PW_default.h"
 #include "algorithms/dynamic_programming/PW_acyclic/PW_acyclic.h"
-#include "algorithms/dynamic_programming/PW_ILS/PW_ILS.h"
+#include "algorithms/metaheuristics/ILS/PW_ILS.h"
 
 class Solver{
 
