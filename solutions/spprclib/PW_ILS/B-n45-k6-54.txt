@@ -1,0 +1,25 @@
+PathWyse ver. 0.1
+--------------------
+Reading problem data: instances/spprclib/B-n45-k6-54.sppcc
+Reading problem data complete
+--------------------
+Problem: B-n45-k6
+Number of resources: 1
+Number of nodes: 46
+Origin: 0
+Destination: 45
+Upperbounds: 100 
+--------------------
+Solving problem...
+Algorithm mode: main algorithm
+PW_ILS global time: 0.002004
+--------------------
+Problem Status: Indeterminate
+PW_ILS status: Ready
+--------------------
+Best solution found:
+Solution Status: Feasible
+Obj: -619278
+Tour Length: 14
+Tour: 0 4 39 8 22 28 32 12 19 37 23 44 20 45 
+Consumption: 99 

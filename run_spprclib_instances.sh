@@ -20,7 +20,7 @@ fi
 if [ -f "$SET_FILE" ]; then
     ALGORITHM=$(grep "^main_algorithm" "$SET_FILE" | sed 's/.*= *//' | tr -d '[:space:]')
     if [ -z "$ALGORITHM" ]; then
-        echo "Warning: Could not find main_algorithm in $SET_FILE, using 'default'"
+        echo "Warning: Could not find main_algorithm in $SET_FILE, using 'ILS'"
         ALGORITHM="default"
     fi
 else
@@ -37,6 +37,7 @@ current=0
 echo "Found $total instance files to process"
 echo "========================================="
 
+mkdir -p "solutions/spprclib/${ALGORITHM}"
 # Process each .sppcc file
 for instance in instances/spprclib/*.sppcc; do
     if [ -f "$instance" ]; then
@@ -44,7 +45,7 @@ for instance in instances/spprclib/*.sppcc; do
         filename=$(basename "$instance" .sppcc)
         
         # Define output file with algorithm name
-        output="solutions/spprclib/${filename}-${ALGORITHM}.txt"
+        output="solutions/spprclib/${ALGORITHM}/${filename}.txt"
         
         # Increment counter
         current=$((current + 1))

@@ -1,0 +1,25 @@
+PathWyse ver. 0.1
+--------------------
+Reading problem data: instances/spprclib/M-n200-k17-12.sppcc
+Reading problem data complete
+--------------------
+Problem: M-n200-k17
+Number of resources: 1
+Number of nodes: 201
+Origin: 0
+Destination: 200
+Upperbounds: 200 
+--------------------
+Solving problem...
+Algorithm mode: main algorithm
+PW_ILS global time: 0.001892
+--------------------
+Problem Status: Indeterminate
+PW_ILS status: Ready
+--------------------
+Best solution found:
+Solution Status: Feasible
+Obj: -3886
+Tour Length: 15
+Tour: 0 156 112 6 183 94 95 117 97 92 151 59 99 60 200 
+Consumption: 200 

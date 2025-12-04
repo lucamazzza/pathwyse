@@ -21,6 +21,7 @@ public:
 
     /** ILS Components **/
     void generateInitialSolution();
+    Path greedyConstruction();
     void localSearch(Path& solution);
     void perturbation(Path& solution, int strength);
     bool acceptanceCriterion(const Path& current, const Path& candidate);
