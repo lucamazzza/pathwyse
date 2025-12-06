@@ -4,6 +4,7 @@
 #include <limits>
 
 /** Algorithm management **/
+//Constructors and destructors
 
 PW_ILS::PW_ILS(std::string name, Problem* problem): Algorithm(name, problem) {
     base_algorithm = new PWDefault("PWDefault", problem);
@@ -19,6 +20,7 @@ PW_ILS::~PW_ILS() {
     delete base_algorithm;
 }
 
+//Init and reset
 void PW_ILS::initAlgorithm() {
     Algorithm::initAlgorithm();
     iterations_count = 0;
@@ -46,8 +48,7 @@ void PW_ILS::resetAlgorithm(int reset_level) {
     collector.resetTimesCumulative();
 }
 
-/** Main ILS solve method **/
-
+//Solve
 void PW_ILS::solve() {
     if(Parameters::getVerbosity() >= 4)
         std::cout << "ILS: Starting Iterated Local Search..." << std::endl;
@@ -56,7 +57,7 @@ void PW_ILS::solve() {
     initAlgorithm();
     collector.startGlobalTime();
     
-    // Step 1: Generate initial solution
+    //Step 1: Generate initial solution
     generateInitialSolution();
     
     if(solutions.empty()) {
@@ -71,22 +72,23 @@ void PW_ILS::solve() {
     if(Parameters::getVerbosity() >= 3)
         std::cout << "ILS: Initial solution objective: " << current_solution.getObjective() << std::endl;
     
-    // Step 2: ILS main loop
+    //Step 2: ILS main loop
     while(iterations_count < max_iterations && 
           no_improve_count < max_no_improve &&
           collector.getGlobalTime() < timelimit) {
         iterations_count++;
-        // Local Search
+        
+        //Local Search
         collector.startTime("t_local_search");
         localSearch(current_solution);
         collector.stopTime("t_local_search");
         local_search_count++;
-        // Check for improvement
+        
+        //Check for improvement
         if(current_solution.getObjective() < best_solution.getObjective()) {
             best_solution = current_solution;
             updateIncumbent(best_solution.getObjective());
             no_improve_count = 0;
-            // Store improved solution
             addSolution(best_solution);
             updateBestSolution(solutions.size() - 1);
             if(Parameters::getVerbosity() >= 3)
@@ -95,11 +97,13 @@ void PW_ILS::solve() {
         } else {
             no_improve_count++;
         }
-        // Acceptance Criterion
+        
+        //Acceptance Criterion
         if(!acceptanceCriterion(current_solution, best_solution)) {
             current_solution = best_solution;
         }
-        // Perturbation
+        
+        //Perturbation
         if(no_improve_count < max_no_improve) {
             collector.startTime("t_perturbation");
             perturbation(current_solution, perturbation_strength);
@@ -107,6 +111,7 @@ void PW_ILS::solve() {
             perturbations_count++;
         }
     }
+    
     collector.stopGlobalTime();
     if(Parameters::getVerbosity() >= 3) {
         std::cout << "ILS: Completed" << std::endl;
@@ -147,15 +152,12 @@ void PW_ILS::generateInitialSolution() {
 }
 
 Path PW_ILS::greedyConstruction() {
-    // Greedy nearest neighbor construction that visits ALL feasible nodes
     Path path;
     
     int origin = problem->getOrigin();
     int destination = problem->getDestination();
     int n_nodes = problem->getNumNodes();
     Resource* objective = problem->getObj();
-    
-    // Get resource bounds to check feasibility
     std::vector<Resource*> resources = problem->getResources();
     
     std::vector<int> tour;
@@ -166,7 +168,6 @@ Path PW_ILS::greedyConstruction() {
     visited[origin] = true;
     int current = origin;
     
-    // Build tour by visiting all reachable nodes greedily
     bool can_add_more = true;
     while(can_add_more) {
         std::vector<int>& neighbors = problem->getNeighbors(current, true);
@@ -179,11 +180,9 @@ Path PW_ILS::greedyConstruction() {
             if(neighbor == destination || visited[neighbor])
                 continue;
                 
-            // Check if we can reach this neighbor without violating constraints
             bool feasible = true;
             for(size_t r = 0; r < resources.size(); r++) {
                 int new_consumption = resources[r]->extend(consumption[r], current, neighbor, true);
-                // Check if we can still reach destination from neighbor
                 if(new_consumption > resources[r]->getUB()) {
                     feasible = false;
                     break;
@@ -200,31 +199,26 @@ Path PW_ILS::greedyConstruction() {
         }
         
         if(best_neighbor != -1) {
-            // Add the best neighbor to the tour
             tour.push_back(best_neighbor);
             visited[best_neighbor] = true;
             
-            // Update consumption
             for(size_t r = 0; r < resources.size(); r++) {
                 consumption[r] = resources[r]->extend(consumption[r], current, best_neighbor, true);
             }
             
             current = best_neighbor;
         } else {
-            // No more nodes can be added, go to destination
             can_add_more = false;
         }
     }
     
-    // Add destination
     tour.push_back(destination);
     
-    // Set tour
     std::list<int> tour_list(tour.begin(), tour.end());
     path.setTour(tour_list);
     
-    // Calculate objective value
-    int obj_value = objective->getInitValue();
+    //Calculate objective value (must include origin node cost)
+    int obj_value = objective->getInitValue() + objective->getNodeCost(origin);
     for(size_t i = 0; i < tour.size() - 1; i++) {
         obj_value += objective->getArcCost(tour[i], tour[i+1]);
         obj_value += objective->getNodeCost(tour[i+1]);
@@ -241,40 +235,66 @@ Path PW_ILS::greedyConstruction() {
     return path;
 }
 
+//Local search
 void PW_ILS::localSearch(Path& solution) {
     bool improved = true;
     int ls_iterations = 0;
-    const int max_ls_iterations = 50;
+    const int max_ls_iterations = 100;
+    
     while(improved && ls_iterations < max_ls_iterations) {
         improved = false;
         ls_iterations++;
-        int current_obj = solution.getObjective();
-        // Try different local search moves
-        Path candidate1 = twoOptMove(solution);
-        if(candidate1.getStatus() == PATH_FEASIBLE && 
-           candidate1.getObjective() < current_obj) {
-            solution = candidate1;
+        
+        Path best_candidate = solution;
+        
+        //Try adding unvisited nodes
+        Path add_candidate = addNodeMove(solution);
+        if(add_candidate.getStatus() == PATH_FEASIBLE && 
+           add_candidate.getObjective() < best_candidate.getObjective()) {
+            best_candidate = add_candidate;
             improved = true;
-            continue;
         }
-        Path candidate2 = insertMove(solution);
-        if(candidate2.getStatus() == PATH_FEASIBLE && 
-           candidate2.getObjective() < current_obj) {
-            solution = candidate2;
+        
+        //Try removing nodes
+        Path remove_candidate = removeNodeMove(solution);
+        if(remove_candidate.getStatus() == PATH_FEASIBLE && 
+           remove_candidate.getObjective() < best_candidate.getObjective()) {
+            best_candidate = remove_candidate;
             improved = true;
-            continue;
         }
-        Path candidate3 = swapMove(solution);
-        if(candidate3.getStatus() == PATH_FEASIBLE && 
-           candidate3.getObjective() < current_obj) {
-            solution = candidate3;
+        
+        //Try 2-opt
+        Path opt2_candidate = twoOptMove(solution);
+        if(opt2_candidate.getStatus() == PATH_FEASIBLE && 
+           opt2_candidate.getObjective() < best_candidate.getObjective()) {
+            best_candidate = opt2_candidate;
             improved = true;
+        }
+        
+        //Try insert
+        Path insert_candidate = insertMove(solution);
+        if(insert_candidate.getStatus() == PATH_FEASIBLE && 
+           insert_candidate.getObjective() < best_candidate.getObjective()) {
+            best_candidate = insert_candidate;
+            improved = true;
+        }
+        
+        //Try swap
+        Path swap_candidate = swapMove(solution);
+        if(swap_candidate.getStatus() == PATH_FEASIBLE && 
+           swap_candidate.getObjective() < best_candidate.getObjective()) {
+            best_candidate = swap_candidate;
+            improved = true;
+        }
+        
+        if(improved) {
+            solution = best_candidate;
         }
     }
 }
 
+//Perturbation
 void PW_ILS::perturbation(Path& solution, int strength) {
-    // Apply multiple random moves to escape local optimum
     for(int i = 0; i < strength; i++) {
         double rand_val = uniform_dist(rng);
         Path perturbed;
@@ -302,11 +322,138 @@ bool PW_ILS::acceptanceCriterion(const Path& current, const Path& candidate) {
         double prob = std::exp(-(candidate_obj - current_obj) / (0.1 * current_obj));
         return uniform_dist(rng) < prob;
     }
-    // Only accept improvements
+    //Acceptance criterion: only accept improvements
     return const_cast<Path&>(candidate).getObjective() <= const_cast<Path&>(current).getObjective();
 }
 
 /** Solution manipulation **/
+
+Path PW_ILS::addNodeMove(const Path& solution) {
+    Path new_path = solution;
+    std::list<int> tour = const_cast<Path&>(solution).getTour();
+    std::vector<int> tour_vec(tour.begin(), tour.end());
+    
+    int origin = problem->getOrigin();
+    int destination = problem->getDestination();
+    int n_nodes = problem->getNumNodes();
+    
+    //Find unvisited nodes
+    std::vector<bool> visited(n_nodes, false);
+    for(int node : tour_vec) {
+        visited[node] = true;
+    }
+    
+
+    int best_node = -1;
+    int best_pos = -1;
+    int best_obj_improvement = 0;
+    
+    for(int node = 0; node < n_nodes; node++) {
+        if(visited[node] || node == origin || node == destination) continue;
+        
+        // Try inserting this node at each position
+        for(size_t pos = 1; pos < tour_vec.size(); pos++) {
+            std::vector<int> test_tour = tour_vec;
+            test_tour.insert(test_tour.begin() + pos, node);
+            
+
+            Resource* objective = problem->getObj();
+            int old_cost = objective->getArcCost(tour_vec[pos-1], tour_vec[pos]);
+            int new_cost = objective->getArcCost(tour_vec[pos-1], node) + 
+                          objective->getNodeCost(node) +
+                          objective->getArcCost(node, tour_vec[pos]);
+            int obj_change = new_cost - old_cost;
+            
+            if(obj_change < best_obj_improvement) {
+                best_obj_improvement = obj_change;
+                best_node = node;
+                best_pos = pos;
+            }
+        }
+    }
+    
+    if(best_node != -1) {
+        tour_vec.insert(tour_vec.begin() + best_pos, best_node);
+        std::list<int> new_tour(tour_vec.begin(), tour_vec.end());
+        new_path.setTour(new_tour);
+        evaluatePath(new_path);
+    }
+    
+    return new_path;
+}
+
+Path PW_ILS::removeNodeMove(const Path& solution) {
+    Path new_path = solution;
+    std::list<int> tour = const_cast<Path&>(solution).getTour();
+    std::vector<int> tour_vec(tour.begin(), tour.end());
+    
+    if(tour_vec.size() <= 3) return new_path; // Keep at least origin and destination
+    
+    int origin = problem->getOrigin();
+    int destination = problem->getDestination();
+    
+
+    int best_pos = -1;
+    int best_obj_improvement = 0;
+    
+    for(size_t pos = 1; pos < tour_vec.size() - 1; pos++) {
+        if(tour_vec[pos] == origin || tour_vec[pos] == destination) continue;
+        
+
+        Resource* objective = problem->getObj();
+        int old_cost = objective->getArcCost(tour_vec[pos-1], tour_vec[pos]) +
+                      objective->getNodeCost(tour_vec[pos]) +
+                      objective->getArcCost(tour_vec[pos], tour_vec[pos+1]);
+        int new_cost = objective->getArcCost(tour_vec[pos-1], tour_vec[pos+1]);
+        int obj_change = new_cost - old_cost;
+        
+        if(obj_change < best_obj_improvement) {
+            best_obj_improvement = obj_change;
+            best_pos = pos;
+        }
+    }
+    
+    if(best_pos != -1) {
+        tour_vec.erase(tour_vec.begin() + best_pos);
+        std::list<int> new_tour(tour_vec.begin(), tour_vec.end());
+        new_path.setTour(new_tour);
+        evaluatePath(new_path);
+    }
+    
+    return new_path;
+}
+
+void PW_ILS::evaluatePath(Path& path) {
+    std::list<int> tour = path.getTour();
+    std::vector<int> tour_vec(tour.begin(), tour.end());
+    
+    Resource* objective = problem->getObj();
+    std::vector<Resource*> resources = problem->getResources();
+    std::vector<int> consumption(resources.size(), 0);
+    
+    int origin = problem->getOrigin();
+    
+
+    int obj_value = objective->getInitValue() + objective->getNodeCost(origin);
+    bool feasible = true;
+    
+    for(size_t i = 0; i < tour_vec.size() - 1; i++) {
+        obj_value += objective->getArcCost(tour_vec[i], tour_vec[i+1]);
+        obj_value += objective->getNodeCost(tour_vec[i+1]);
+        
+        // Check resource constraints
+        for(size_t r = 0; r < resources.size(); r++) {
+            consumption[r] = resources[r]->extend(consumption[r], tour_vec[i], tour_vec[i+1], true);
+            if(consumption[r] > resources[r]->getUB()) {
+                feasible = false;
+            }
+        }
+    }
+    
+    path.setObjective(obj_value);
+    path.setConsumption(consumption);
+    path.setStatus(feasible ? PATH_FEASIBLE : PATH_INFEASIBLE);
+}
 
 Path PW_ILS::twoOptMove(const Path& solution) {
     Path new_path = solution;
@@ -316,19 +463,19 @@ Path PW_ILS::twoOptMove(const Path& solution) {
     
     std::vector<int> tour_vec(tour.begin(), tour.end());
     int n = tour_vec.size();
-    // Random 2-opt move
+
     std::uniform_int_distribution<int> dist(1, n - 2);
     int i = dist(rng);
     int j = dist(rng);
     if(i > j) std::swap(i, j);
     if(i == j || j - i < 2) return new_path;
-    // Reverse segment [i, j]
+
     std::reverse(tour_vec.begin() + i, tour_vec.begin() + j + 1);
-    // Create new path
+
     std::list<int> new_tour(tour_vec.begin(), tour_vec.end());
     new_path.setTour(new_tour);
-    // Evaluate new path (simplified - would need full resource checking)
-    new_path.setStatus(PATH_FEASIBLE);
+
+    evaluatePath(new_path);
     return new_path;
 }
 
@@ -340,7 +487,7 @@ Path PW_ILS::insertMove(const Path& solution) {
     
     std::vector<int> tour_vec(tour.begin(), tour.end());
     int n = tour_vec.size();
-    // Random insert move
+
     std::uniform_int_distribution<int> dist(1, n - 2);
     int remove_pos = dist(rng);
     int insert_pos = dist(rng);
@@ -352,10 +499,10 @@ Path PW_ILS::insertMove(const Path& solution) {
         insert_pos--;
     
     tour_vec.insert(tour_vec.begin() + insert_pos, node);
-    // Create new path
+
     std::list<int> new_tour(tour_vec.begin(), tour_vec.end());
     new_path.setTour(new_tour);
-    new_path.setStatus(PATH_FEASIBLE);
+    evaluatePath(new_path);
     return new_path;
 }
 
@@ -368,17 +515,17 @@ Path PW_ILS::swapMove(const Path& solution) {
     
     std::vector<int> tour_vec(tour.begin(), tour.end());
     int n = tour_vec.size();
-    // Random swap move
+
     std::uniform_int_distribution<int> dist(1, n - 2);
     int pos1 = dist(rng);
     int pos2 = dist(rng);
     if(pos1 != pos2) {
         std::swap(tour_vec[pos1], tour_vec[pos2]);
     }
-    // Create new path
+
     std::list<int> new_tour(tour_vec.begin(), tour_vec.end());
     new_path.setTour(new_tour);
-    new_path.setStatus(PATH_FEASIBLE);
+    evaluatePath(new_path);
     return new_path;
 }
 

@@ -31,11 +31,11 @@ algo/default/ng/set_size = 8
 algo/default/candidate/type = node
 algo/default/join/type = ordered
 
-algo/ils/max_iterations = 1000
-algo/ils/max_no_improve = 100
-algo/ils/perturbation_strength = 3
-algo/ils/timelimit = 300.0
-algo/ils/accept_worse = 0
+algo/ils/max_iterations = 100000
+algo/ils/max_no_improve = 20000
+algo/ils/perturbation_strength = 8
+algo/ils/timelimit = 120.0
+algo/ils/accept_worse = 1
 
 data_collection/level = -1
 output/write = 0

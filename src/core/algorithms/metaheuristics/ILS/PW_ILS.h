@@ -27,6 +27,9 @@ public:
     bool acceptanceCriterion(const Path& current, const Path& candidate);
 
     /** Solution manipulation **/
+    void evaluatePath(Path& path);
+    Path addNodeMove(const Path& solution);
+    Path removeNodeMove(const Path& solution);
     Path twoOptMove(const Path& solution);
     Path insertMove(const Path& solution);
     Path swapMove(const Path& solution);
