@@ -12,14 +12,14 @@ Upperbounds: 200
 --------------------
 Solving problem...
 Algorithm mode: main algorithm
-PW_ILS global time: 0.185123
+PW_ILS global time: 0.195391
 --------------------
 Problem Status: Indeterminate
 PW_ILS status: Ready
 --------------------
 Best solution found:
 Solution Status: Feasible
-Obj: -1000
-Tour Length: 11
-Tour: 0 20 24 25 27 30 28 26 23 21 101 
-Consumption: 140 
+Obj: 0
+Tour Length: 3
+Tour: 0 20 101 
+Consumption: 10 

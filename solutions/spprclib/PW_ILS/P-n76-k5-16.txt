@@ -12,7 +12,7 @@ Upperbounds: 280
 --------------------
 Solving problem...
 Algorithm mode: main algorithm
-PW_ILS global time: 7.474915
+PW_ILS global time: 7.405592
 --------------------
 Problem Status: Indeterminate
 PW_ILS status: Ready
